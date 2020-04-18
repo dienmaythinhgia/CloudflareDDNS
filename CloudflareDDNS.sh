@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Current Version: 1.0.0
+# Current Version: 1.0.1
 
 ## How to get and use?
 # curl -O https://raw.githubusercontent.com/hezhijie0327/CloudflareDDNS/master/CloudflareDDNS.sh && chmod 0777 ./CloudflareDDNS.sh
@@ -161,8 +161,8 @@ function GetDNSRecord() {
 # Get WAN IP
 function GetWANIP() {
     if [ "${Type}" = "A" ]; then
-        GoogleAPIResponse=$(dig -4 TXT +short o-o.myaddr.l.google.com @ns$(( ( RANDOM % 2 ) + 1 )).google.com | awk '{ match( $0, /[0-9\.]+/ ); print substr( $0, RSTART, RLENGTH ) }')
-        if [ "${GoogleAPIResponse}" = "" ]; then
+        GoogleDNSAPIResponse=$(dig -4 TXT +short o-o.myaddr.l.google.com @ns$(( ( RANDOM % 2 ) + 1 )).google.com | awk '{ match( $0, /[0-9\.]+/ ); print substr( $0, RSTART, RLENGTH ) }')
+        if [ "${GoogleDNSAPIResponse}" = "" ]; then
             OpenDNSAPIResponse=$(dig -4 A +short myip.opendns.com @resolver$(( ( RANDOM % 2 ) + 1 )).opendns.com | awk '{ match( $0, /[0-9\.]+/ ); print substr( $0, RSTART, RLENGTH ) }')
             if [ "${OpenDNSAPIResponse}" = "" ]; then
                 echo "invalid"
@@ -170,11 +170,11 @@ function GetWANIP() {
                 echo "${OpenDNSAPIResponse}"
             fi
         else
-            echo "${GoogleAPIResponse}"
+            echo "${GoogleDNSAPIResponse}"
         fi
     elif [ "${Type}" = "AAAA" ]; then
-        GoogleAPIResponse=$(dig -6 TXT +short o-o.myaddr.l.google.com @ns$(( ( RANDOM % 2 ) + 1 )).google.com | awk '{ match( $0, /[0-9a-f\:]+/ ); print substr( $0, RSTART, RLENGTH ) }')
-        if [ "${GoogleAPIResponse}" = "" ]; then
+        GoogleDNSAPIResponse=$(dig -6 TXT +short o-o.myaddr.l.google.com @ns$(( ( RANDOM % 2 ) + 1 )).google.com | awk '{ match( $0, /[0-9a-f\:]+/ ); print substr( $0, RSTART, RLENGTH ) }')
+        if [ "${GoogleDNSAPIResponse}" = "" ]; then
             OpenDNSAPIResponse=$(dig -6 AAAA +short myip.opendns.com @resolver$(( ( RANDOM % 2 ) + 1 )).opendns.com | awk '{ match( $0, /[0-9a-f\:]+/ ); print substr( $0, RSTART, RLENGTH ) }')
             if [ "${OpenDNSAPIResponse}" = "" ]; then
                 echo "invalid"
@@ -182,7 +182,7 @@ function GetWANIP() {
                 echo "${OpenDNSAPIResponse}"
             fi
         else
-            echo "${GoogleAPIResponse}"
+            echo "${GoogleDNSAPIResponse}"
         fi
     fi
 }
