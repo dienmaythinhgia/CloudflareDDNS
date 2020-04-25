@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Current Version: 1.0.2
+# Current Version: 1.0.3
 
 ## How to get and use?
-# curl -O https://raw.githubusercontent.com/hezhijie0327/CloudflareDDNS/master/CloudflareDDNS.sh && chmod 0777 ./CloudflareDDNS.sh
-# ./CloudflareDDNS.sh -e user@example.com -k 123defghijk4567pqrstuvw890 -z example.com -r demo.example.com -t A -l 900 -p false -m create
+# sudo git clone "https://github.com/hezhijie0327/CloudflareDDNS.git" && sudo chmod 0777 ./CloudflareDDNS/CloudflareDDNS.sh && sudo ./CloudflareDDNS/CloudflareDDNS.sh -e user@example.com -k 123defghijk4567pqrstuvw890 -z example.com -r demo.example.com -t A -l 900 -p false -m create
 
 ## How to fix?
 # Syntax error: "(" unexpected -> sudo dpkg-reconfigure dash -> No
