@@ -7,24 +7,29 @@
 
 ## How to fix?
 # Syntax error: "(" unexpected -> sudo dpkg-reconfigure dash -> No
+# DSM Config
+# username="$1"
+# password="$2"
+# hostname="$3"
+# ipAddr="$4"
 
 ## Configuration
 # Cloudflare Email Address
-XAuthEmail=""
+XAuthEmail="votrunghantvbox@gmail.com"
 # Cloudflare API Key
-XAuthKey=""
+XAuthKey="$2"
 # Zone Name
-ZoneName=""
+ZoneName="$1"
 # Record Name
-RecordName=""
+RecordName="$3"
 # Type (A | AAAA)
-Type=""
+Type="A"
 # TTL (1 | 120 | 300 | 600 | 900 | 1800 | 3600 | 7200 | 18000 | 43200 | 86400)
-TTL=""
+TTL="120"
 # Proxy Status (true | false)
-ProxyStatus=""
+ProxyStatus="false"
 # Running Mode (create | update | delete)
-RunningMode=""
+RunningMode="update"
 
 ## Parameter
 while getopts e:k:z:r:t:l:p:m: GetParameter; do
